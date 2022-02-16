@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: ./app
+      dockerfile: ../Dockerfile
+    volumes:
+      - ./app/:/app/
+    command: uvicorn app.main:app --reload --port 8000 --host 0.0.0.0
+    env_file:
+      - ./.env
+    ports:
+      - 8000:8000
